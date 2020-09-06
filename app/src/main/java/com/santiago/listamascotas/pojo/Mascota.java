@@ -1,4 +1,4 @@
-package com.santiago.listamascotas;
+package com.santiago.listamascotas.pojo;
 
 import java.text.BreakIterator;
 
@@ -8,6 +8,11 @@ public class Mascota {
     int favorito;
     private String nombre;
     private int imagen;
+
+    public Mascota(int imagen, int favorito){
+        this.favorito=favorito;
+        this.imagen=imagen;
+    }
 
     public Mascota(String nombre, int imagen) {
         this.nombre = nombre;

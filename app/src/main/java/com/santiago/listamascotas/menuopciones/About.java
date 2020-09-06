@@ -1,8 +1,10 @@
-package com.santiago.listamascotas;
+package com.santiago.listamascotas.menuopciones;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.santiago.listamascotas.R;
 
 public class About extends AppCompatActivity {
 

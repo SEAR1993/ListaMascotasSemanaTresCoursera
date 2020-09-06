@@ -1,10 +1,24 @@
 <resources>
-    <string name="app_name">Lista Mascotas</string>
+    <string name="app_name">Lista de Mascotas</string>
     <string name="nombre_mascota">Nombre de la mascota</string>
     <string name="todo">TODO</string>
     <string name="contador">0</string>
     <string name="menu_about">Acerca de</string>
-    <string name="menu_settings">Configuraciones</string>
+    <string name="menu_settings">Contacto</string>
     <string name="fav">Favoritos</string>
-
+    <string name="about_para_android">Lista de Mascotas: App para Android</string>
+    <string name="derechos">Todos lo derechos reservados ©</string>
+    <string name="powered">Powered by </string>
+    <string name="sear">SEAR´s Code</string>
+    <string name="coursera">App for Coursera</string>
+    <string name="google">Google Play</string>
+    <string name="version">Version 3.00.1</string>
+    <string name="formulario">Formulario</string>
+    <string name="nombre">Nombre Completo</string>
+    <string name="email">Email</string>
+    <string name="mensaje">Mensaje</string>
+    <string name="enviar">Enviar Mensaje</string>
+    <string name="name_contacto">Enviar Correo</string>
+    <string name="fav_mas">Mascotas Favoritas</string>
+    <string name="twit">Twitter</string>
 </resources>

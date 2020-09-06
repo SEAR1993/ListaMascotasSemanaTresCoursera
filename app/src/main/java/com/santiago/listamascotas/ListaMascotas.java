@@ -1,23 +1,34 @@
 package com.santiago.listamascotas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
+
+import com.santiago.listamascotas.adaptadores.MascotaAdaptador;
+import com.santiago.listamascotas.pojo.Mascota;
 
 import java.util.ArrayList;
 
 public class ListaMascotas extends AppCompatActivity {
+    private Toolbar toolbar;
     ArrayList<Mascota> mascotasMasLikes;
     private RecyclerView mLikes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_mascotas);
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar_lista_mascotas);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.fav_mas));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setIcon(getDrawable(R.drawable.ic_mascota));
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+        }
 
         mascotasMasLikes =new ArrayList<Mascota>();
         mLikes=(RecyclerView)findViewById(R.id.rvfavMascotas);

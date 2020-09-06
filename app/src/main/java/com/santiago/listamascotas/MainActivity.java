@@ -2,54 +2,63 @@ package com.santiago.listamascotas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
+import com.santiago.listamascotas.adaptadores.PageAdapter;
+import com.santiago.listamascotas.fragments.PerfilFragment;
+import com.santiago.listamascotas.fragments.RecyclerFragment;
+import com.santiago.listamascotas.menuopciones.About;
+import com.santiago.listamascotas.menuopciones.Contacto;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ArrayList<Mascota>mascotas;
-    private RecyclerView ListaMascotas;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewpager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mascotas =new ArrayList<Mascota>();
-        ListaMascotas = (RecyclerView)findViewById(R.id.rvMascotas);
-        LinearLayoutManager llm =new LinearLayoutManager(this);
-        llm.setOrientation(RecyclerView.VERTICAL);
-        ListaMascotas.setLayoutManager(llm);
-        inicializarListaMascotas();
-        inicializarAdaptador();
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        getSupportActionBar().setIcon(getDrawable(R.drawable.ic_mascota));
+
+
+        tabLayout = (TabLayout)findViewById(R.id.tabLayout);
+        viewpager = (ViewPager) findViewById(R.id.viewPager);
+        setUpViewPager();
+
+        if (toolbar!=null){
+            setSupportActionBar(toolbar);
+        }
+
     }
 
-    public void inicializarAdaptador() {
-        MascotaAdaptador adaptador= new MascotaAdaptador(mascotas, this);
-        ListaMascotas.setAdapter(adaptador);
+    private ArrayList<Fragment> agregarFraments(){
+        ArrayList<Fragment> fragments=new ArrayList<>();
+        fragments.add(new RecyclerFragment());
+        fragments.add(new PerfilFragment());
+
+        return fragments;
     }
+    private void setUpViewPager(){
 
-    public void inicializarListaMascotas() {
-        mascotas = new ArrayList<Mascota>();
-
-        mascotas.add(new Mascota("Pluto", R.drawable.dog));
-        mascotas.add(new Mascota("Mishu", R.drawable.cat));
-        mascotas.add(new Mascota("Twitter", R.drawable.twitter));
-        mascotas.add(new Mascota("Elephant", R.drawable.elephant));
-        mascotas.add(new Mascota("Bullie", R.drawable.bull));
-        mascotas.add(new Mascota("Cowie", R.drawable.cow));
-        mascotas.add(new Mascota("Simba", R.drawable.lion));
-        mascotas.add(new Mascota("Porky", R.drawable.pig));
+        viewpager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFraments()));
+        tabLayout.setupWithViewPager(viewpager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_home);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_perfil_mascota);
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_opciones, menu);
@@ -59,18 +68,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.mAbout:
-                Intent intent=new Intent(this, About.class);
-                startActivity(intent);
-                break;
-            case R.id.mSettings:
-                Intent i = new Intent(this, Settings.class);
+            case R.id.btnFav:
+                Intent i = new Intent(this, ListaMascotas.class);
                 startActivity(i);
                 break;
         }
         switch (item.getItemId()){
-            case R.id.btnFav:
-                Intent i = new Intent(this, ListaMascotas.class);
+            case R.id.mAbout:
+                Intent intent=new Intent(this, About.class);
+                startActivity(intent);
+                break;
+            case R.id.mContacto:
+                Intent i = new Intent(this, Contacto.class);
                 startActivity(i);
                 break;
         }
