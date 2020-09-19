@@ -23,7 +23,8 @@ public class ListaMascotas extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.toolbar_lista_mascotas);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(getResources().getString(R.string.fav_mas));
+        getSupportActionBar().setTitle(getResources().getString(R.string.fav_mas
+        ));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setIcon(getDrawable(R.drawable.ic_mascota));
         if (toolbar!=null){

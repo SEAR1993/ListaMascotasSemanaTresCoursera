@@ -1,13 +1,19 @@
 package com.santiago.listamascotas.pojo;
 
+import java.io.Serializable;
 import java.text.BreakIterator;
+import java.util.Date;
 
-public class Mascota {
+public class Mascota implements Serializable {
 
-
-    int favorito;
+    private int id;
+    private int favorito;
     private String nombre;
     private int imagen;
+    private Date ultimosLikes;
+
+    public Mascota() {
+    }
 
     public Mascota(int imagen, int favorito){
         this.favorito=favorito;
@@ -33,6 +39,22 @@ public class Mascota {
 
     public void setFavorito(int favorito) {
         this.favorito = favorito;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getUltimosLikes() {
+        return ultimosLikes;
+    }
+
+    public void setUltimosLikes(Date ultimosLikes) {
+        this.ultimosLikes = ultimosLikes;
     }
 
 }

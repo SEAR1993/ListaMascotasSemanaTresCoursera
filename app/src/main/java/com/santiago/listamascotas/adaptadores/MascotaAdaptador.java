@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.santiago.listamascotas.R;
+import com.santiago.listamascotas.db.ConstructorMascotas;
 import com.santiago.listamascotas.fragments.PerfilFragment;
 import com.santiago.listamascotas.pojo.Mascota;
 
@@ -42,33 +44,18 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         final Mascota mascota = mascotas.get(position);
         mascotaViewHolder.tvNombreMAscota.setText(mascota.getNombre());
         mascotaViewHolder.imgFoto.setImageResource(mascota.getImagen());
+        mascotaViewHolder.tvContador.setText(String.valueOf(mascota.getFavorito()));
+
         mascotaViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int like= mascota.getFavorito();
-                mascota.setFavorito(++like);
-                mascotaViewHolder.tvContador.setText(String.valueOf(like));
-
-                }
-
-        });
-        mascotaViewHolder.ivFav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // Toast.makeText(activity, mascota.getNombre()+" Tiene "+ mascota.getCountIN() + " Me gusta",Toast.LENGTH_SHORT).show();
-            }
-        });
-        /*mascotaViewHolder.imgFoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(activity,PerfilFragment.class);
-                intent.putExtra(EXTRA_NOMBRE,mascota.getNombre());
-                //intent.putExtra("EXTRA_IMAGEN",mascota.getImagen());
-                activity.startActivity(intent);
+                Toast.makeText(activity, "Diste Like a " + mascota.getNombre(), Toast.LENGTH_SHORT).show();
+                ConstructorMascotas constructorMascotas = new ConstructorMascotas(activity);
+                constructorMascotas.darLikeMascota(mascota);
+                mascotaViewHolder.tvContador.setText(String.valueOf(constructorMascotas.obtenerLikesMascota(mascota)));
 
             }
-        });*/
-
+        });
     }
 
     @Override
